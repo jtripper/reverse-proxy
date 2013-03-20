@@ -19,7 +19,6 @@ import socket
 import select
 import struct
 from tor import TorForwarder
-import random
 
 # Request object for managing a open proxy connection
 class Request:
@@ -82,7 +81,6 @@ class Listener:
   # connections list
   def accept(self):
     client, addr = self.s.accept()
-    print " [*] Accepted connection from %s:%d." % (addr[0], addr[1])
     r = Request(self.tor, client, self.proxy)
     self.oc.append(r)
     self.oc.append(r.forwarder)
